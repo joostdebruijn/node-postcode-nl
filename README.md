@@ -1,4 +1,6 @@
 # node-postcode-nl
+[![npm version](https://badge.fury.io/js/postcode-nl.svg)](https://badge.fury.io/js/postcode-nl) [![dependencies Status](https://david-dm.org/joostdebruijn/node-postcode-nl/status.svg)](https://david-dm.org/joostdebruijn/node-postcode-nl) [![Known Vulnerabilities](https://snyk.io/test/github/joostdebruijn/node-postcode-nl/badge.svg)](https://snyk.io/test/github/joostdebruijn/node-postcode-nl)
+
 Node module to obtain Dutch postcodes via [postcodeapi.nu](https://www.postcodeapi.nu). The module is able to perform requests to the v2 API, does some basic validation before the call is performed, handles errors from the API and returns the results as a json for further processing within your own application. To use this module, requesting an API-key at postcodeapi.nu is required.
 
 ## Using the module
@@ -7,10 +9,11 @@ Simply grap the module from npm by doing `npm install --save postcode-nl`. After
 ## Methods
 This module exposes various methods globally:
 
-- [getSingleAddress](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSingleAddress) - To receive information about a postcode/number combination
-- [getSinglePostcode](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSinglePostcode) - To receive information about a postcode
-- [getAddressById](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddressById) - To receive the details of an object based on it's BAG identifier
-- [getPostcodeArea](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getPostcodeArea) - Receive all information about a particular postcode area.
+- [getSingleAddress](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSingleAddress) - To search for an address based on the BAG identifier of the object.
+- [getSinglePostcode](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSinglePostcode) - Returns the details of a single P6 postcode.
+- [getAddresses](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddresses) - Returns a list of addresses, it is possible to filter on postcode (P6-formatted) and number.
+- [getAddressesByPostcodeAndNumber](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddressesByPostcodeAndNumber) - Returns a list of addresses filtered on postcode (P6-formatted) and number. The difference with `getAddresses` is that filtering is *required*, otherwise an error is thrown.
+- [getPostcodes](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getPostcodes) - Returns a list of postcodes (P6), optionally filtered on postcode area.
 - [helpers](https://joostdebruijn.github.io/node-postcode-nl/docs/module-helpers.html) - Some additional helper functions to validate postcodes
 
 The [documentation](https://joostdebruijn.github.io/node-postcode-nl) contains a full explaination of all the parameters and provide some examples. The documentation could be accessed by web or could be build from source by using jsdoc.
