@@ -1,0 +1,2 @@
+# Disable checking index, because it is only a export wrapper
+index.js

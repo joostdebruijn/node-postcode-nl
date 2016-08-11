@@ -7,9 +7,11 @@ Simply grap the module from npm by doing `npm install --save postcode-nl`. After
 ## Methods
 This module exposes various methods globally:
 
-- getSingleAddress - To receive information about a postcode/number combination
-- getSinglePostcode - To receive information about a postcode
-- helpers - Some additional helper functions to validate postcodes
+- [getSingleAddress](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSingleAddress) - To receive information about a postcode/number combination
+- [getSinglePostcode](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSinglePostcode) - To receive information about a postcode
+- [getAddressById](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddressById) - To receive the details of an object based on it's BAG identifier
+- [getPostcodeArea](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getPostcodeArea) - Receive all information about a particular postcode area.
+- [helpers](https://joostdebruijn.github.io/node-postcode-nl/docs/module-helpers.html) - Some additional helper functions to validate postcodes
 
 The [documentation](https://joostdebruijn.github.io/node-postcode-nl) contains a full explaination of all the parameters and provide some examples. The documentation could be accessed by web or could be build from source by using jsdoc.
 
