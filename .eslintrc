@@ -10,6 +10,7 @@
     "global-require": ["error"]
   },
   "env": {
-    "node": true
+    "node": true,
+    "mocha": true
   }
 }

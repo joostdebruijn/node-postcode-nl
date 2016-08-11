@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddressById</a></li><li><a href="global.html">getPostcodeArea</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddresses</a></li><li><a href="global.html">getAddressesByPostcodeAndNumber</a></li><li><a href="global.html">getPostcodes</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
 </nav>
 
 <div id="main">
@@ -47,14 +47,16 @@
 
 
     <section class="readme">
-        <article><h1>node-postcode-nl</h1><p>Node module to obtain Dutch postcodes via <a href="https://www.postcodeapi.nu">postcodeapi.nu</a>. The module is able to perform requests to the v2 API, does some basic validation before the call is performed, handles errors from the API and returns the results as a json for further processing within your own application. To use this module, requesting an API-key at postcodeapi.nu is required.</p>
+        <article><h1>node-postcode-nl</h1><p><a href="https://badge.fury.io/js/postcode-nl"><img src="https://badge.fury.io/js/postcode-nl.svg" alt="npm version"></a> <a href="https://david-dm.org/joostdebruijn/node-postcode-nl"><img src="https://david-dm.org/joostdebruijn/node-postcode-nl/status.svg" alt="dependencies Status"></a> <a href="https://snyk.io/test/github/joostdebruijn/node-postcode-nl"><img src="https://snyk.io/test/github/joostdebruijn/node-postcode-nl/badge.svg" alt="Known Vulnerabilities"></a></p>
+<p>Node module to obtain Dutch postcodes via <a href="https://www.postcodeapi.nu">postcodeapi.nu</a>. The module is able to perform requests to the v2 API, does some basic validation before the call is performed, handles errors from the API and returns the results as a json for further processing within your own application. To use this module, requesting an API-key at postcodeapi.nu is required.</p>
 <h2>Using the module</h2><p>Simply grap the module from npm by doing <code>npm install --save postcode-nl</code>. After that you can include it in your application with <code>require('postcode-nl')</code>.</p>
 <h2>Methods</h2><p>This module exposes various methods globally:</p>
 <ul>
-<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSingleAddress">getSingleAddress</a> - To receive information about a postcode/number combination</li>
-<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSinglePostcode">getSinglePostcode</a> - To receive information about a postcode</li>
-<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddressById">getAddressById</a> - To receive the details of an object based on it's BAG identifier</li>
-<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getPostcodeArea">getPostcodeArea</a> - Receive all information about a particular postcode area.</li>
+<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSingleAddress">getSingleAddress</a> - To search for an address based on the BAG identifier of the object.</li>
+<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSinglePostcode">getSinglePostcode</a> - Returns the details of a single P6 postcode.</li>
+<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddresses">getAddresses</a> - Returns a list of addresses, it is possible to filter on postcode (P6-formatted) and number.</li>
+<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddressesByPostcodeAndNumber">getAddressesByPostcodeAndNumber</a> - Returns a list of addresses filtered on postcode (P6-formatted) and number. The difference with <code>getAddresses</code> is that filtering is <em>required</em>, otherwise an error is thrown.</li>
+<li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getPostcodes">getPostcodes</a> - Returns a list of postcodes (P6), optionally filtered on postcode area.</li>
 <li><a href="https://joostdebruijn.github.io/node-postcode-nl/docs/module-helpers.html">helpers</a> - Some additional helper functions to validate postcodes</li>
 </ul>
 <p>The <a href="https://joostdebruijn.github.io/node-postcode-nl">documentation</a> contains a full explaination of all the parameters and provide some examples. The documentation could be accessed by web or could be build from source by using jsdoc.</p>
@@ -72,7 +74,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 13:05:26 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 18:31:19 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
