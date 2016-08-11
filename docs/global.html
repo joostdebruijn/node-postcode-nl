@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddressById</a></li><li><a href="global.html">getPostcodeArea</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
 </nav>
 
 <div id="main">
@@ -115,14 +115,14 @@
 
     
 
-    <h4 class="name" id="getSingleAddress"><span class="type-signature">(static) </span>getSingleAddress<span class="signature">(options, query, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getAddressById"><span class="type-signature">(static) </span>getAddressById<span class="signature">(options, id, callback)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>To search for an address based on a postcode and number.</p>
+    <p>To search for an address based on the BAG identifier of the object. Instance of GET /addresses.</p>
 </div>
 
 
@@ -174,7 +174,7 @@
 
             
 
-            <td class="description last"><p>Options for performing the API call and influencing the callback</p>
+            <td class="description last"><p>Options for performing the API call and influencing the callback.</p>
                 <h6>Properties</h6>
                 
 
@@ -226,7 +226,7 @@
 
             
 
-            <td class="description last"><p>The API-token to access the API</p></td>
+            <td class="description last"><p>The API-token to access the API.</p></td>
         </tr>
 
     
@@ -259,7 +259,814 @@
 
             
 
-            <td class="description last"><p>If set to true, the callback will be invoked with an extra result containing an object with the limit and the remaining amount of API calls</p></td>
+            <td class="description last"><p>If set to true, the callback will be invoked with an extra result containing an object with the limit and the remaining amount of API calls.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The BAG identifier of the object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A callback which is called when the API-request is finished.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>May contain an instance of Error, if no error occured null is responded.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>result</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Contains the response as a json in exactly the same format as provided by the API. If no results are found, null is responded.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rateLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If requested in options, an object with information about the API limits is returned. Otherwise, it will return undefined.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getAddressById.js.html">getAddressById.js</a>, <a href="getAddressById.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');let options = {  apiKey : 'abcdefghijklmnopQRSTUVWXYZ123',  returnRateLimit : true};let id = '0268200000075156';postcodeApi.getAddressById(options, id, (error, result, rateLimit) => {  if (!error) {    console.log(result); // Shows the output of the API directy in the console    console.log(rateLimit); // Shows the rateLimit information in the console  }});</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getPostcodeArea"><span class="type-signature">(static) </span>getPostcodeArea<span class="signature">(options, postcodeArea, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Query for the summarized information of a whole postcode area</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Options for performing the API call and influencing the callback.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The API-token to access the API.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>returnRateLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If set to true, the callback will be invoked with an extra result containing an object with the limit and the remaining amount of API calls.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>postcodeArea</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The postcode area to be queried, formatted as P4.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A callback which is called when the API-request is finished.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>May contain an instance of Error, if no error occured null is responded.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>result</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Contains the response as a json in exactly the same format as provided by the API. If no results are found, null is responded.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rateLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If requested in options, an object with information about the API limits is returned. Otherwise, it will return undefined.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getPostcodeArea.js.html">getPostcodeArea.js</a>, <a href="getPostcodeArea.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-todo">To Do:</dt>
+    <dd class="tag-todo">
+        <ul>
+            <li>Support for pagination</li>
+        </ul>
+    </dd>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');let options = {  apiKey : 'abcdefghijklmnopQRSTUVWXYZ123',  returnRateLimit : true};let postcodeArea = '1234';postcodeApi.getPostcodeArea(options, id, (error, result, rateLimit) => {  if (!error) {    console.log(result); // Shows the output of the API directy in the console    console.log(rateLimit); // Shows the rateLimit information in the console  }});</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getSingleAddress"><span class="type-signature">(static) </span>getSingleAddress<span class="signature">(options, query, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>To search for an address based on a postcode and number. Instance of GET /addresses.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Options for performing the API call and influencing the callback.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The API-token to access the API.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>returnRateLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If set to true, the callback will be invoked with an extra result containing an object with the limit and the remaining amount of API calls.</p></td>
         </tr>
 
     
@@ -289,7 +1096,7 @@
 
             
 
-            <td class="description last"><p>Containing the query for calling the API</p>
+            <td class="description last"><p>Containing the query for calling the API.</p>
                 <h6>Properties</h6>
                 
 
@@ -331,7 +1138,7 @@
 
             
 
-            <td class="description last"><p>Must contain the keys postcode (P6-formatted)</p></td>
+            <td class="description last"><p>Must contain the keys postcode (P6-formatted).</p></td>
         </tr>
 
     
@@ -354,7 +1161,7 @@
 
             
 
-            <td class="description last"><p>The streetnumber of the address that must be queried</p></td>
+            <td class="description last"><p>The streetnumber of the address that must be queried.</p></td>
         </tr>
 
     
@@ -467,7 +1274,7 @@
 
             
 
-            <td class="description last"><p>Contains the response as a json. If no results are found, null is responded.</p></td>
+            <td class="description last"><p>Contains the response as a json in exactly the same format as provided by the API. If no results are found, null is responded.</p></td>
         </tr>
 
     
@@ -578,7 +1385,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');let options = {  apiKey : 'abcdefghijklmnopQRSTUVWXYZ123',  returnRateLimit : true}let query = {  postcode: '1234AB',  number: 10}console.log(postcodeApi.getSingleAddress);postcodeApi.getSingleAddress(options, query, (error, result, rateLimit) => {  if (!error) {    console.log(result); // Shows the output of the API directy in the console    console.log(rateLimit); // Shows the rateLimit information in the console  }});</code></pre>
+    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');let options = {  apiKey : 'abcdefghijklmnopQRSTUVWXYZ123',  returnRateLimit : true};let query = {  postcode: '1234AB',  number: 10};postcodeApi.getSingleAddress(options, query, (error, result, rateLimit) => {  if (!error) {    console.log(result); // Shows the output of the API directy in the console    console.log(rateLimit); // Shows the rateLimit information in the console  }});</code></pre>
 
 
 
@@ -594,7 +1401,7 @@
 
 
 <div class="description">
-    <p>To search for an address based on a postcode and number.</p>
+    <p>To search for an address based on a postcode and number. Instance of GET /postcodes.</p>
 </div>
 
 
@@ -646,7 +1453,7 @@
 
             
 
-            <td class="description last"><p>Options for performing the API call and influencing the callback</p>
+            <td class="description last"><p>Options for performing the API call and influencing the callback.</p>
                 <h6>Properties</h6>
                 
 
@@ -659,6 +1466,8 @@
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -685,10 +1494,51 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>The API-token to access the API</p></td>
+            <td class="description last"><p>The API-token to access the API.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>returnRateLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If set to true, the callback will be invoked with an extra result containing an object with the limit and the remaining amount of API calls.</p></td>
         </tr>
 
     
@@ -718,7 +1568,7 @@
 
             
 
-            <td class="description last"><p>Must contain the keys postcode (P6-formatted) as a string</p></td>
+            <td class="description last"><p>The postcode to query, formatted in P6.</p></td>
         </tr>
 
     
@@ -755,6 +1605,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -780,6 +1632,14 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -803,10 +1663,51 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>Contains the response as a json. If no results are found, null is responded.</p></td>
+            <td class="description last"><p>Contains the response as a json in exactly the same format as provided by the API. If no results are found, null is responded.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rateLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If requested in options, an object with information about the API limits is returned. Otherwise, it will return undefined.</p></td>
         </tr>
 
     
@@ -884,7 +1785,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');let options = {   apiKey : 'abcdefghijklmnopQRSTUVWXYZ123' }let postcode = '1234AB'postcodeApi.getSinglePostcode(options, postcode, (error, result) => { if (!error) {  console.log(result); // Shows the json-output of the API directy in the console }});</code></pre>
+    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');let options = {   apiKey : 'abcdefghijklmnopQRSTUVWXYZ123'};let postcode = '1234AB';postcodeApi.getSinglePostcode(options, postcode, (error, result) => { if (!error) {  console.log(result); // Shows the json-output of the API directy in the console }});</code></pre>
 
 
 
@@ -906,7 +1807,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 10:32:20 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 11 2016 13:05:26 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
