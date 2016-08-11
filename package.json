@@ -1,0 +1,31 @@
+{
+  "name": "postcode-nl",
+  "version": "1.0.0",
+  "description": "Node module to obtain Dutch postcodes via postcodeapi.nu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joostdebruijn/node-postcode-nl.git"
+  },
+  "keywords": [
+    "postcode",
+    "postcode-nl",
+    "postcode api",
+    "postcode api dutch"
+  ],
+  "author": "Joost de Bruijn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joostdebruijn/node-postcode-nl/issues"
+  },
+  "homepage": "https://github.com/joostdebruijn/node-postcode-nl#readme",
+  "dependencies": {
+    "request": "^2.74.0"
+  },
+  "devDependencies": {
+    "minami": "^1.1.1"
+  }
+}

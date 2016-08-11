@@ -1,0 +1,20 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc"]
+  },
+  "source": {
+    "include": [ "./lib" ]
+  },
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "readme": "README.md",
+    "encoding": "utf8",
+    "destination": "./docs",
+    "recurse": true,
+    "template": "node_modules/minami"
+  },
+  "templates": {
+    "cleverLinks": false
+  }
+}

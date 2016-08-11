@@ -1,0 +1,15 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "rules": {
+    "max-len": ["error", 120, 2, {"ignoreComments": true, "ignoreUrls": true}],
+    "prefer-arrow-callback": ["error"],
+    "callback-return" : ["error"],
+    "global-require": ["error"]
+  },
+  "env": {
+    "node": true
+  }
+}
