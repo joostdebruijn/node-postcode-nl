@@ -4,7 +4,8 @@
   "description": "Node module to obtain Dutch postcodes via postcodeapi.nu",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,9 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.12",
     "eslint": "^3.2.2",
+    "istanbul": "^0.4.4",
     "jsdoc": "^3.4.0",
     "minami": "^1.1.1",
     "mocha": "^3.0.2",
