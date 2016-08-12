@@ -7,7 +7,18 @@
     "max-len": ["error", 120, 2, {"ignoreComments": true, "ignoreUrls": true}],
     "prefer-arrow-callback": ["error"],
     "callback-return" : ["error"],
-    "global-require": ["error"]
+    "global-require": ["error"],
+    "valid-jsdoc" : ["error"],
+    "eqeqeq" : ["error", "smart"],
+    "space-before-blocks": ["error", "always"],
+    "space-before-function-paren": ["error", "never"],
+    "space-in-parens": ["error", "never"],
+    "space-infix-ops": ["error", {"int32Hint": false}],
+    "padded-blocks": ["error", "never"],
+    "quotes": ["error", "single", "avoid-escape"],
+    "semi-spacing": ["error", {"before": false, "after": true}],
+    "semi": ["error", "always"],
+    "strict": ["error", "global"]
   },
   "env": {
     "node": true,
