@@ -1,3 +1,4 @@
+'use strict';
 const postcodeApi = require('../index.js');
 const sinon = require('sinon');
 const chai = require('chai');

@@ -1,3 +1,4 @@
+'use strict';
 const postcodeApi = require('../index.js');
 const checkP6 = postcodeApi.helpers.validatePostcodeP6;
 const chai = require('chai');

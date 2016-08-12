@@ -1,3 +1,5 @@
+'use strict';
+
 // Exporting the different modules from the library
 module.exports = {
   getSingleAddress: require('./lib/getSingleAddress.js'),

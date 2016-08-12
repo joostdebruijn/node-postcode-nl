@@ -4,6 +4,7 @@
   "description": "Node module to obtain Dutch postcodes via postcodeapi.nu",
   "main": "index.js",
   "scripts": {
+    "pretest" : "./node_modules/eslint/bin/eslint.js **/*.js",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
@@ -36,5 +37,8 @@
     "mocha": "^3.0.2",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0"
+  },
+  "engines" : {
+    "node" : ">=4.0.0" 
   }
 }
