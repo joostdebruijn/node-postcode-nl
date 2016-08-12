@@ -4,7 +4,7 @@
   "description": "Node module to obtain Dutch postcodes via postcodeapi.nu",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,12 @@
     "request": "^2.74.0"
   },
   "devDependencies": {
-    "minami": "^1.1.1"
+    "chai": "^3.5.0",
+    "eslint": "^3.2.2",
+    "jsdoc": "^3.4.0",
+    "minami": "^1.1.1",
+    "mocha": "^3.0.2",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0"
   }
 }
