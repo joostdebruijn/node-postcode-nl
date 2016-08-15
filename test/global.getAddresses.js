@@ -149,4 +149,26 @@ describe('global/getAddresses()', () => {
       expect(requestApiStub).to.be.calledWith(requestApiOptions);
     });
   });
+  it('should be able to send a followNext request', () => {
+    // Setting up the test data
+    const followNextStub = sandbox.stub(postcodeApi.helpers, 'followNext', (options, callback) => {
+      callback(null, null);
+    });
+    const postcode = '1234AB';
+    const number = 12;
+    const followNextOptions = {
+      url: 'https://postcode-api.apiwise.nl/v2/addresses/?postcode=' + postcode + '&number=' + number,
+      headers : {
+        'X-Api-Key' : undefined
+      },
+      followNext: true
+    };
+
+    postcodeApi.getAddresses({ followNext: true }, { postcode, number }, (error, body, rateLimit) => {
+      expect(error).to.eql(null);
+      expect(body).to.eql(null);
+      expect(rateLimit).to.eql(undefined);
+      expect(followNextStub).to.be.calledWith(followNextOptions);
+    });
+  });
 });
