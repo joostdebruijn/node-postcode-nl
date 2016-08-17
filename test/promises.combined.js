@@ -71,6 +71,45 @@ describe('promises/getAddresses()', () => {
       expect(apiStub).to.be.calledWith({});
     });
   });
+  it('should resolve with the response in an object', () => {
+    const apiStub = sandbox.stub(interalApi, 'getAddresses', (options, query, callback) => {
+      return callback(null, null, null);
+    });
+
+    const expectedResult = {
+      result: null
+    };
+
+    return postcodeApi.promises.getAddresses({}, {}).then((resolved) => {
+      expect(resolved).to.eql(expectedResult);
+      expect(apiStub).to.be.called.once;
+      expect(apiStub).to.be.calledWith({});
+    });
+  });
+  it('should run with only the options parameter given', () => {
+    const rateLimit = {
+      limit: 30,
+      remaining: 15
+    };
+
+    const apiStub = sandbox.stub(interalApi, 'getAddresses', (options, query, callback) => {
+      return callback(null, null, rateLimit);
+    });
+
+    const expectedResult = {
+      result: null,
+      rateLimit:  {
+        limit: 30,
+        remaining: 15
+      }
+    };
+
+    return postcodeApi.promises.getAddresses({ returnRateLimit: true }).then((resolved) => {
+      expect(resolved).to.eql(expectedResult);
+      expect(apiStub).to.be.called.once;
+      expect(apiStub).to.be.calledWith({ returnRateLimit: true });
+    });
+  });
 });
 
 describe('promises/getAddressesByPostcodeAndNumber()', () => {
@@ -228,6 +267,30 @@ describe('promises/getPostcodes()', () => {
       expect(error).to.be.instanceof(Error);
       expect(apiStub).to.be.called.once;
       expect(apiStub).to.be.calledWith({});
+    });
+  });
+  it('should run with only the options parameter given', () => {
+    const rateLimit = {
+      limit: 30,
+      remaining: 15
+    };
+
+    const apiStub = sandbox.stub(interalApi, 'getPostcodes', (options, query, callback) => {
+      return callback(null, null, rateLimit);
+    });
+
+    const expectedResult = {
+      result: null,
+      rateLimit:  {
+        limit: 30,
+        remaining: 15
+      }
+    };
+
+    return postcodeApi.promises.getPostcodes({ returnRateLimit: true }).then((resolved) => {
+      expect(resolved).to.eql(expectedResult);
+      expect(apiStub).to.be.called.once;
+      expect(apiStub).to.be.calledWith({ returnRateLimit: true });
     });
   });
 });
