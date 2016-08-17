@@ -37,7 +37,7 @@ describe('global/requestApi()', () => {
       callback(null, { statusCode: 200 }, 'test');
     });
 
-    requestApi.get(options, (error, body, rateLimit) => {
+    return requestApi.get(options, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql('test');
       expect(rateLimit).to.eql(undefined);
@@ -65,7 +65,7 @@ describe('global/requestApi()', () => {
       callback(null, response, null);
     });
 
-    requestApi.get(options, (error, body, rateLimit) => {
+    return requestApi.get(options, (error, body, rateLimit) => {
       expect(rateLimit).to.eql(rateLimitReturn);
     });
   });
@@ -79,7 +79,7 @@ describe('global/requestApi()', () => {
       callback(null, response, null);
     });
 
-    requestApi.get({}, (error, body, rateLimit) => {
+    return requestApi.get({}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -95,7 +95,7 @@ describe('global/requestApi()', () => {
       callback(null, response, null);
     });
 
-    requestApi.get({}, (error, body, rateLimit) => {
+    return requestApi.get({}, (error, body, rateLimit) => {
       expect(error).to.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -106,7 +106,7 @@ describe('global/requestApi()', () => {
       callback(new Error(''), null, null);
     });
 
-    requestApi.get({}, (error, body, rateLimit) => {
+    return requestApi.get({}, (error, body, rateLimit) => {
       expect(error).to.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);

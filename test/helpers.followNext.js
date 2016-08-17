@@ -54,7 +54,7 @@ describe('helpers/followNext()', () => {
     };
 
     // Run the function
-    postcodeApi.helpers.followNext(options, (error, body, rateLimit) => {
+    return postcodeApi.helpers.followNext(options, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(expectedResult);
       expect(rateLimit).to.eql(undefined);
@@ -83,7 +83,7 @@ describe('helpers/followNext()', () => {
     };
 
     // Run the function
-    postcodeApi.helpers.followNext(options, (error, body, rateLimit) => {
+    return postcodeApi.helpers.followNext(options, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(rateLimit).to.eql(rateLimitLast);
       expect(requestApiStub).to.be.calledWith(options);
@@ -91,7 +91,6 @@ describe('helpers/followNext()', () => {
     });
   });
   it('should be able to handle a single response without next-href', () => {
-    // @TODO: Deze werken niet!
     // Preparing requestApi
     const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
       return callback(null, response3);
@@ -105,7 +104,6 @@ describe('helpers/followNext()', () => {
     });
   });
   it('should be able to handle a single response without next-href and return the right rateLimit', () => {
-    // @TODO: Deze werken niet!
     // Preparing requestApi
     const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
       return callback(null, response3, rateLimitLast);
@@ -116,7 +114,7 @@ describe('helpers/followNext()', () => {
       returnRateLimit: true
     };
 
-    postcodeApi.helpers.followNext(options, (error, body, rateLimit) => {
+    return postcodeApi.helpers.followNext(options, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(response3);
       expect(rateLimit).to.eql(rateLimitLast);
@@ -130,7 +128,7 @@ describe('helpers/followNext()', () => {
       return callback(new Error('Error'), null);
     });
 
-    postcodeApi.helpers.followNext({}, (error, body, rateLimit) => {
+    return postcodeApi.helpers.followNext({}, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -143,7 +141,7 @@ describe('helpers/followNext()', () => {
       return callback(null, null);
     });
 
-    postcodeApi.helpers.followNext({}, (error, body, rateLimit) => {
+    return postcodeApi.helpers.followNext({}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -159,7 +157,7 @@ describe('helpers/followNext()', () => {
       return callback(new Error('Error'), null);
     });
 
-    postcodeApi.helpers.followNext({}, (error, body, rateLimit) => {
+    return postcodeApi.helpers.followNext({}, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -176,7 +174,7 @@ describe('helpers/followNext()', () => {
       return callback(new Error('Error'), null);
     });
 
-    postcodeApi.helpers.followNext({}, response2, (error, body, rateLimit) => {
+    return postcodeApi.helpers.followNext({}, response2, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);

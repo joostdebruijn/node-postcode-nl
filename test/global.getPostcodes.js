@@ -27,7 +27,7 @@ describe('global/getPostcodes()', () => {
     });
     const postcodeArea = 1234;
 
-    postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -41,7 +41,7 @@ describe('global/getPostcodes()', () => {
     });
     const postcodeArea = '1234AB';
 
-    postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -60,7 +60,7 @@ describe('global/getPostcodes()', () => {
       }
     };
 
-    postcodeApi.getPostcodes({}, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -80,7 +80,7 @@ describe('global/getPostcodes()', () => {
       apiKey : 'test'
     };
 
-    postcodeApi.getPostcodes({apiKey: 'test'}, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({apiKey: 'test'}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -100,7 +100,7 @@ describe('global/getPostcodes()', () => {
       }
     };
 
-    postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -121,7 +121,7 @@ describe('global/getPostcodes()', () => {
       followNext: true
     };
 
-    postcodeApi.getPostcodes({ followNext: true }, postcodeArea, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({ followNext: true }, postcodeArea, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);

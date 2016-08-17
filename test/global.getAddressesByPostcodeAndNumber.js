@@ -27,7 +27,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
     });
     const number = 12;
 
-    postcodeApi.getAddressesByPostcodeAndNumber({}, { number }, (error, body, rateLimit) => {
+    return postcodeApi.getAddressesByPostcodeAndNumber({}, { number }, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -41,7 +41,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
     });
     const postcode = '1234 AB';
 
-    postcodeApi.getAddressesByPostcodeAndNumber({}, { postcode }, (error, body, rateLimit) => {
+    return postcodeApi.getAddressesByPostcodeAndNumber({}, { postcode }, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -55,7 +55,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
     });
     const postcode = '1234AB';
 
-    postcodeApi.getAddressesByPostcodeAndNumber({}, { postcode }, (error, body, rateLimit) => {
+    return postcodeApi.getAddressesByPostcodeAndNumber({}, { postcode }, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -70,7 +70,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
     const postcode = '1234AB';
     const number = '12';
 
-    postcodeApi.getAddressesByPostcodeAndNumber({}, { postcode, number }, (error, body, rateLimit) => {
+    return postcodeApi.getAddressesByPostcodeAndNumber({}, { postcode, number }, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -92,7 +92,8 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
       apiKey: 'test'
     };
 
-    postcodeApi.getAddressesByPostcodeAndNumber({ apiKey: 'test'}, { postcode, number }, (error, body, rateLimit) => {
+    return postcodeApi.getAddressesByPostcodeAndNumber({ apiKey: 'test'}, { postcode, number },
+    (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);

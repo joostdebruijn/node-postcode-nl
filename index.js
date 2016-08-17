@@ -7,5 +7,6 @@ module.exports = {
   getAddresses: require('./lib/getAddresses.js'),
   getAddressesByPostcodeAndNumber: require('./lib/getAddressesByPostcodeAndNumber.js'),
   getPostcodes: require('./lib/getPostcodes.js'),
-  helpers: require('./lib/helpers.js')
+  helpers: require('./lib/helpers.js'),
+  promises: require('./lib/promises.js')
 };

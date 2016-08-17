@@ -1,3 +1,7 @@
 # Disable checking index, because it is only a export wrapper
 index.js
+lib/promisesRequires.js
 test/test.js
+node_modules
+docs
+coverage
