@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddresses</a></li><li><a href="global.html">getAddressesByPostcodeAndNumber</a></li><li><a href="global.html">getPostcodes</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.followNext">followNext</a></li><li data-type='method'><a href="module-helpers.html#.mergeResults">mergeResults</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li><li><a href="module-promises.html">promises</a><ul class='methods'><li data-type='method'><a href="module-promises.html#~getAddresses">getAddresses</a></li><li data-type='method'><a href="module-promises.html#~getAddressesByPostcodeAndNumber">getAddressesByPostcodeAndNumber</a></li><li data-type='method'><a href="module-promises.html#~getPostcodes">getPostcodes</a></li><li data-type='method'><a href="module-promises.html#~getSingleAddress">getSingleAddress</a></li><li data-type='method'><a href="module-promises.html#~getSinglePostcode">getSinglePostcode</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddresses</a></li><li><a href="global.html">getAddressesByPostcodeAndNumber</a></li><li><a href="global.html">getPostcodes</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
 </nav>
 
 <div id="main">
@@ -115,7 +115,7 @@
 
     
 
-    <h4 class="name" id="getAddresses"><span class="type-signature">(static) </span>getAddresses<span class="signature">(options, query, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getAddresses"><span class="type-signature">(static) </span>getAddresses<span class="signature">(options, query<span class="signature-attributes">opt</span>, callback)</span><span class="type-signature"></span></h4>
 
     
 
@@ -146,6 +146,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -170,6 +172,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -263,6 +273,39 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>followNext</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If set to true, the pagination links will be followed an a single response will be returned.</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -285,6 +328,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -402,6 +455,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1236,6 +1297,39 @@
             
 
             <td class="description last"><p>If set to true, the callback will be invoked with an extra result containing an object with the limit and the remaining amount of API calls.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>followNext</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If set to true, the pagination links will be followed an a single response will be returned.</p></td>
         </tr>
 
     
@@ -2329,7 +2423,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Aug 12 2016 17:54:04 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 18 2016 08:44:32 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

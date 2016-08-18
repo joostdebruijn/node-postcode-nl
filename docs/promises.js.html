@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>promises.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.followNext">followNext</a></li><li data-type='method'><a href="module-helpers.html#.mergeResults">mergeResults</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li><li><a href="module-promises.html">promises</a><ul class='methods'><li data-type='method'><a href="module-promises.html#~getAddresses">getAddresses</a></li><li data-type='method'><a href="module-promises.html#~getAddressesByPostcodeAndNumber">getAddressesByPostcodeAndNumber</a></li><li data-type='method'><a href="module-promises.html#~getPostcodes">getPostcodes</a></li><li data-type='method'><a href="module-promises.html#~getSingleAddress">getSingleAddress</a></li><li data-type='method'><a href="module-promises.html#~getSinglePostcode">getSinglePostcode</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddresses</a></li><li><a href="global.html">getAddressesByPostcodeAndNumber</a></li><li><a href="global.html">getPostcodes</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">promises.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * All the global methods are exposed as a promise. This allows to chain different API-calls asynchroniously. The example below shows how you can easily get details from another API-call, while error handling is very easy and nested callbacks are prevented. The methods follow exactly the same parameters as the global exposed callback-methods, however they do not have a callback parameter (of course). When a promise is fullfiled, the promise resolved one single object with the result and the rateLimit (if requested).
+ *
+ * The most easy way to enable the methods as promise is to add `const postcodeApi = require('postcode-nl').promises;` in your code. All the functions will be exposed as promise.
+ * @module promises
+ * @since 1.3.0
+ * @example
+ * const postcodeApi = require('postcode-nl').promises;
+ *
+ * options = {
+ *   returnRateLimit: true,
+ *   apiKey: "EcLHlMMn8M3fFbxjBIkNX6jZ1NOVlILXRQltUAg1"
+ * }
+ *
+ * postcodeApi.getSingleAddress(options, '0362200001001845')
+ *   .then((resolved) => {
+ *     console.log(resolved); // Result for getSingleAddress()
+ *     let postcode = resolved.result.postcode;
+ *     return postcodeApi.getSinglePostcode(options, postcode);
+ *   }).then((resolved) => {
+ *     console.log(resolved); // Result for getSinglePostcode()
+ *   }).catch((error) => {
+ *     console.log(error); // Handle errors for both calls
+ * });
+ */
+
+'use strict';
+const internalApi = require('./promisesRequires.js');
+
+/**
+ * @method
+ * @since 1.3.0
+ * @param {Object} options - See [global method](global.html#getAddresses)
+ * @param {Object} query - See [global method](global.html#getAddresses)
+ * @returns {Promise} - When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.
+ */
+ function getAddresses(options, query) {
+  if (arguments.length === 1) {
+    query = {};
+  }
+
+  return new Promise((resolve, reject) => {
+    internalApi.getAddresses(options, query, (error, result, rateLimit) => {
+      if(error instanceof Error) {
+        // Reject when there was an error
+        return reject(error);
+      } else {
+        // Preparing the value to return
+        let resolved = {
+          result
+        };
+        if (options.returnRateLimit) {
+          resolved.rateLimit = rateLimit;
+        }
+        // Resolve the promise
+        return resolve(resolved);
+      }
+    });
+  });
+}
+module.exports.getAddresses = getAddresses;
+
+/**
+ * @method
+ * @since 1.3.0
+ * @param {Object} options - See [global method](global.html#getAddressesByPostcodeAndNumber)
+ * @param {Object} query - See [global method](global.html#getAddressesByPostcodeAndNumber)
+ * @returns {Promise} - When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.
+ */
+function getAddressesByPostcodeAndNumber(options, query) {
+  return new Promise((resolve, reject) => {
+    internalApi.getAddressesByPostcodeAndNumber(options, query, (error, result, rateLimit) => {
+      if(error instanceof Error) {
+        // Reject when there was an error
+        return reject(error);
+      } else {
+        // Preparing the value to return
+        let resolved = {
+          result
+        };
+        if (options.returnRateLimit) {
+          resolved.rateLimit = rateLimit;
+        }
+        // Resolve the promise
+        return resolve(resolved);
+      }
+    });
+  });
+}
+module.exports.getAddressesByPostcodeAndNumber = getAddressesByPostcodeAndNumber;
+
+/**
+ * @method
+ * @since 1.3.0
+ * @param {Object} options - See [global method](global.html#getSingleAddress)
+ * @param {Object} id - See [global method](global.html#getSingleAddress)
+ * @returns {Promise} - When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.
+ */
+function getSingleAddress(options, id) {
+  return new Promise((resolve, reject) => {
+    internalApi.getSingleAddress(options, id, (error, result, rateLimit) => {
+      if(error instanceof Error) {
+        // Reject when there was an error
+        return reject(error);
+      } else {
+        // Preparing the value to return
+        let resolved = {
+          result
+        };
+        if (options.returnRateLimit) {
+          resolved.rateLimit = rateLimit;
+        }
+        // Resolve the promise
+        return resolve(resolved);
+      }
+    });
+  });
+}
+module.exports.getSingleAddress = getSingleAddress;
+
+/**
+ * @method
+ * @since 1.3.0
+ * @param {Object} options - See [global method](global.html#getPostcodes)
+ * @param {Object} postcodeArea - See [global method](global.html#getPostcodes)
+ * @returns {Promise} - When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.
+ */
+function getPostcodes(options, postcodeArea) {
+  if (arguments.length === 1) {
+    postcodeArea = null;
+  }
+
+  return new Promise((resolve, reject) => {
+    internalApi.getPostcodes(options, postcodeArea, (error, result, rateLimit) => {
+      if(error instanceof Error) {
+        // Reject when there was an error
+        return reject(error);
+      } else {
+        // Preparing the value to return
+        let resolved = {
+          result
+        };
+        if (options.returnRateLimit) {
+          resolved.rateLimit = rateLimit;
+        }
+        // Resolve the promise
+        return resolve(resolved);
+      }
+    });
+  });
+}
+module.exports.getPostcodes = getPostcodes;
+
+/**
+ * @method
+ * @since 1.3.0
+ * @param {Object} options - See [global method](global.html#getSinglePostcode)
+ * @param {Object} postcode - See [global method](global.html#getSinglePostcode)
+ * @returns {Promise} - When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.
+ */
+function getSinglePostcode(options, postcode) {
+  return new Promise((resolve, reject) => {
+    internalApi.getSinglePostcode(options, postcode, (error, result, rateLimit) => {
+      if(error instanceof Error) {
+        // Reject when there was an error
+        return reject(error);
+      } else {
+        // Preparing the value to return
+        let resolved = {
+          result
+        };
+        if (options.returnRateLimit) {
+          resolved.rateLimit = rateLimit;
+        }
+        // Resolve the promise
+        return resolve(resolved);
+      }
+    });
+  });
+}
+module.exports.getSinglePostcode = getSinglePostcode;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 18 2016 08:44:32 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

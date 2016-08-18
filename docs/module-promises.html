@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>helpers - Documentation</title>
+    <title>promises - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">helpers</h1>
+    <h1 class="page-title">promises</h1>
     
 
     
@@ -50,7 +50,8 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>The helpers from this module are globally exported under the namespace helpers for use in your own application</p></div>
+            <div class="description"><p>All the global methods are exposed as a promise. This allows to chain different API-calls asynchroniously. The example below shows how you can easily get details from another API-call, while error handling is very easy and nested callbacks are prevented. The methods follow exactly the same parameters as the global exposed callback-methods, however they do not have a callback parameter (of course). When a promise is fullfiled, the promise resolved one single object with the result and the rateLimit (if requested).</p>
+<p>The most easy way to enable the methods as promise is to add <code>const postcodeApi = require('postcode-nl').promises;</code> in your code. All the functions will be exposed as promise.</p></div>
         
 
         
@@ -74,6 +75,9 @@
 
     
 
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.3.0</li></ul></dd>
     
 
     
@@ -99,7 +103,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line1">line 1</a>
+        <a href="promises.js.html">promises.js</a>, <a href="promises.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -122,6 +126,11 @@
 
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl').promises;options = {  returnRateLimit: true,  apiKey: "EcLHlMMn8M3fFbxjBIkNX6jZ1NOVlILXRQltUAg1"}postcodeApi.getSingleAddress(options, '0362200001001845')  .then((resolved) => {    console.log(resolved); // Result for getSingleAddress()    let postcode = resolved.result.postcode;    return postcodeApi.getSinglePostcode(options, postcode);  }).then((resolved) => {    console.log(resolved); // Result for getSinglePostcode()  }).catch((error) => {    console.log(error); // Handle errors for both calls});</code></pre>
 
 
 
@@ -149,15 +158,11 @@
 
     
 
-    <h4 class="name" id=".followNext"><span class="type-signature">(static) </span>followNext<span class="signature">(options, previous<span class="signature-attributes">opt</span>, callback)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    <h4 class="name" id="~getAddresses"><span class="type-signature">(inner) </span>getAddresses<span class="signature">(options, query)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
-
-<div class="description">
-    <p>Helper that can follow _links.next.href and returns a single response. The final returned result contains the _self URL of the first call and (if requested) the rateLimit of the last call. Basicly it is a wrapper for the requestApi.get-method.</p>
-</div>
 
 
 
@@ -179,8 +184,6 @@
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -207,67 +210,17 @@
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>It is basicly the options-object from higher instances, however it must contain some additional keys as described below</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>url</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The URL that must be requested of the first or <em>next</em> (when repeating) item in the collection</p></td>
+            <td class="description last"><p>See <a href="global.html#getAddresses">global method</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>headers</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
@@ -283,78 +236,7 @@
 
             
 
-            <td class="description last"><p>Must at least contain the auth header, but can also contain other HTTP-headers that must be send</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>previous</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>May contain the previous fetched result from the API to extend</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The callback as defined by the end-user</p></td>
+            <td class="description last"><p>See <a href="global.html#getAddresses">global method</a></p></td>
         </tr>
 
     
@@ -398,7 +280,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line112">line 112</a>
+        <a href="promises.js.html">promises.js</a>, <a href="promises.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -426,7 +308,7 @@
         
 <div class="param-desc">
     <ul>
-<li>callback</li>
+<li>When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.</li>
 </ul>
 </div>
 
@@ -438,7 +320,7 @@
     </dt>
     <dd>
         
-<span class="param-type">function</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -453,15 +335,11 @@
 
     
 
-    <h4 class="name" id=".mergeResults"><span class="type-signature">(static) </span>mergeResults<span class="signature">(source, destination, callback)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    <h4 class="name" id="~getAddressesByPostcodeAndNumber"><span class="type-signature">(inner) </span>getAddressesByPostcodeAndNumber<span class="signature">(options, query)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
-
-<div class="description">
-    <p>Helper that is able to merge two results in the _embedded-object from the API together in one single response. It is used within followNext(), however it may be useful in other circumstanses.</p>
-</div>
 
 
 
@@ -496,7 +374,7 @@
 
         <tr>
             
-                <td class="name"><code>source</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
@@ -512,14 +390,14 @@
 
             
 
-            <td class="description last"><p>The response that must be merged with the destination. It is assumed that this object contains a _embedded-object within it (like in the remote API response).</p></td>
+            <td class="description last"><p>See <a href="global.html#getAddressesByPostcodeAndNumber">global method</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>destination</code></td>
+                <td class="name"><code>query</code></td>
             
 
             <td class="type">
@@ -535,102 +413,7 @@
 
             
 
-            <td class="description last"><p>The response that must incude the source object.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A callback that is returned when the merge is finished</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>error</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Returns an instance of a Error when something went wrong</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>mergedResult</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The destination with the source merged in the _embedded-object.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>See <a href="global.html#getAddressesByPostcodeAndNumber">global method</a></p></td>
         </tr>
 
     
@@ -674,7 +457,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line82">line 82</a>
+        <a href="promises.js.html">promises.js</a>, <a href="promises.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -702,7 +485,7 @@
         
 <div class="param-desc">
     <ul>
-<li>callback</li>
+<li>When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.</li>
 </ul>
 </div>
 
@@ -714,7 +497,7 @@
     </dt>
     <dd>
         
-<span class="param-type">function</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -729,15 +512,11 @@
 
     
 
-    <h4 class="name" id=".validatePostcodeP4"><span class="type-signature">(static) </span>validatePostcodeP4<span class="signature">(postcode)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    <h4 class="name" id="~getPostcodes"><span class="type-signature">(inner) </span>getPostcodes<span class="signature">(options, postcodeArea)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
-
-<div class="description">
-    <p>Returns if a postcode is P4-formatted (e.g. 1234)</p>
-</div>
 
 
 
@@ -772,13 +551,13 @@
 
         <tr>
             
-                <td class="name"><code>postcode</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
             
@@ -788,7 +567,30 @@
 
             
 
-            <td class="description last"><p>The postcode that must be checked</p></td>
+            <td class="description last"><p>See <a href="global.html#getPostcodes">global method</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>postcodeArea</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>See <a href="global.html#getPostcodes">global method</a></p></td>
         </tr>
 
     
@@ -806,7 +608,7 @@
 
     
     <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    <dd class="tag-since"><ul class="dummy"><li>1.3.0</li></ul></dd>
     
 
     
@@ -832,7 +634,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line28">line 28</a>
+        <a href="promises.js.html">promises.js</a>, <a href="promises.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -860,7 +662,7 @@
         
 <div class="param-desc">
     <ul>
-<li>True when the postcode is valid</li>
+<li>When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.</li>
 </ul>
 </div>
 
@@ -872,7 +674,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Boolean</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -881,26 +683,17 @@
     
 
 
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');console.log(postcodeApi.helpers.validatePostcodeP4('1234')); // Shows 'true' in the consoleconsole.log(postcodeApi.helpers.validatePostcodeP4('1234AB')); // Shows 'false' in the console</code></pre>
-
-
 
         
             
 
     
 
-    <h4 class="name" id=".validatePostcodeP6"><span class="type-signature">(static) </span>validatePostcodeP6<span class="signature">(postcode)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    <h4 class="name" id="~getSingleAddress"><span class="type-signature">(inner) </span>getSingleAddress<span class="signature">(options, id)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
-
-<div class="description">
-    <p>Returns if a postcode is P6-formatted where spaces are not allowed (e.g. 1234AB)</p>
-</div>
 
 
 
@@ -935,13 +728,13 @@
 
         <tr>
             
-                <td class="name"><code>postcode</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
             
@@ -951,7 +744,30 @@
 
             
 
-            <td class="description last"><p>The postcode that must be checked</p></td>
+            <td class="description last"><p>See <a href="global.html#getSingleAddress">global method</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>See <a href="global.html#getSingleAddress">global method</a></p></td>
         </tr>
 
     
@@ -969,7 +785,7 @@
 
     
     <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    <dd class="tag-since"><ul class="dummy"><li>1.3.0</li></ul></dd>
     
 
     
@@ -995,7 +811,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line9">line 9</a>
+        <a href="promises.js.html">promises.js</a>, <a href="promises.js.html#line99">line 99</a>
     </li></ul></dd>
     
 
@@ -1023,7 +839,7 @@
         
 <div class="param-desc">
     <ul>
-<li>True when the postcode is valid</li>
+<li>When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.</li>
 </ul>
 </div>
 
@@ -1035,7 +851,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Boolean</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -1044,9 +860,181 @@
     
 
 
-    <h5>Example</h5>
+
+        
+            
+
     
-    <pre class="prettyprint"><code>const postcodeApi = require('postcode-nl');console.log(postcodeApi.helpers.validatePostcodeP6('1234')); // Shows 'false' in the consoleconsole.log(postcodeApi.helpers.validatePostcodeP6('1234AB')); // Shows 'true' in the console</code></pre>
+
+    <h4 class="name" id="~getSinglePostcode"><span class="type-signature">(inner) </span>getSinglePostcode<span class="signature">(options, postcode)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>See <a href="global.html#getSinglePostcode">global method</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>postcode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>See <a href="global.html#getSinglePostcode">global method</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.3.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="promises.js.html">promises.js</a>, <a href="promises.js.html#line161">line 161</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>When fullfiled, it returns a single object containing the objects result and rateLimit as the global method returns in the callback.</li>
+</ul>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1068,7 +1056,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 18 2016 08:44:32 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 18 2016 08:44:33 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
