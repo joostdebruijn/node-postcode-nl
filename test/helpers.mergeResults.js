@@ -22,6 +22,12 @@ describe('helpers/mergeResults()', () => {
       expect(mergedResult).to.eql(expectedResult);
     });
   });
+  it('should merge the source and destination properly when it is called to times synchroniously', () => {
+    return postcodeApi.helpers.mergeResults(source, destination, (error, mergedResult) => {
+      expect(error).to.eql(null);
+      expect(mergedResult).to.eql(expectedResult);
+    });
+  });
   it('should check if the source has a _embedded-object', () => {
     return postcodeApi.helpers.mergeResults({}, destination, (error, mergedResult) => {
       expect(error).to.be.instanceof(Error);

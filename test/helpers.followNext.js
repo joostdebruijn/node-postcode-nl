@@ -85,6 +85,7 @@ describe('helpers/followNext()', () => {
     // Run the function
     return postcodeApi.helpers.followNext(options, (error, body, rateLimit) => {
       expect(error).to.eql(null);
+      expect(body).to.eql(expectedResult);
       expect(rateLimit).to.eql(rateLimitLast);
       expect(requestApiStub).to.be.calledWith(options);
       expect(requestApiStub).to.be.called.thrice;
