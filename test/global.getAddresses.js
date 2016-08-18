@@ -27,7 +27,7 @@ describe('global/getAddresses()', () => {
     });
     const postcode = '1234 AB';
 
-    postcodeApi.getAddresses({}, { postcode }, (error, body, rateLimit) => {
+    return postcodeApi.getAddresses({}, { postcode }, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -42,7 +42,7 @@ describe('global/getAddresses()', () => {
     const postcode = '1234AB';
     const number = '12';
 
-    postcodeApi.getAddresses({}, { postcode, number }, (error, body, rateLimit) => {
+    return postcodeApi.getAddresses({}, { postcode, number }, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -62,7 +62,7 @@ describe('global/getAddresses()', () => {
       }
     };
 
-    postcodeApi.getAddresses({}, { number }, (error, body, rateLimit) => {
+    return postcodeApi.getAddresses({}, { number }, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -81,7 +81,7 @@ describe('global/getAddresses()', () => {
       }
     };
 
-    postcodeApi.getAddresses({}, {}, (error, body, rateLimit) => {
+    return postcodeApi.getAddresses({}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -101,7 +101,7 @@ describe('global/getAddresses()', () => {
       apiKey : 'test'
     };
 
-    postcodeApi.getAddresses({apiKey: 'test'}, {}, (error, body, rateLimit) => {
+    return postcodeApi.getAddresses({apiKey: 'test'}, {}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -121,7 +121,7 @@ describe('global/getAddresses()', () => {
       }
     };
 
-    postcodeApi.getAddresses({}, { postcode }, (error, body, rateLimit) => {
+    return postcodeApi.getAddresses({}, { postcode }, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -142,11 +142,33 @@ describe('global/getAddresses()', () => {
       }
     };
 
-    postcodeApi.getAddresses({}, { postcode, number }, (error, body, rateLimit) => {
+    return postcodeApi.getAddresses({}, { postcode, number }, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
       expect(requestApiStub).to.be.calledWith(requestApiOptions);
+    });
+  });
+  it('should be able to send a followNext request', () => {
+    // Setting up the test data
+    const followNextStub = sandbox.stub(postcodeApi.helpers, 'followNext', (options, callback) => {
+      callback(null, null);
+    });
+    const postcode = '1234AB';
+    const number = 12;
+    const followNextOptions = {
+      url: 'https://postcode-api.apiwise.nl/v2/addresses/?postcode=' + postcode + '&number=' + number,
+      headers : {
+        'X-Api-Key' : undefined
+      },
+      followNext: true
+    };
+
+    return postcodeApi.getAddresses({ followNext: true }, { postcode, number }, (error, body, rateLimit) => {
+      expect(error).to.eql(null);
+      expect(body).to.eql(null);
+      expect(rateLimit).to.eql(undefined);
+      expect(followNextStub).to.be.calledWith(followNextOptions);
     });
   });
 });

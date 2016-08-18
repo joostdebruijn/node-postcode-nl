@@ -1,0 +1,14 @@
+ {
+  "_embedded": {
+    "addresses": [
+      {
+        "test" : 2
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://www.test.nl/page2"
+    }
+  }
+}

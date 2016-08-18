@@ -26,7 +26,7 @@ describe('global/getSingleAddress()', () => {
       callback(null, null);
     });
 
-    postcodeApi.getSingleAddress({}, null, (error, body, rateLimit) => {
+    return postcodeApi.getSingleAddress({}, null, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -40,7 +40,7 @@ describe('global/getSingleAddress()', () => {
     });
     const id = 1234;
 
-    postcodeApi.getSingleAddress({}, id , (error, body, rateLimit) => {
+    return postcodeApi.getSingleAddress({}, id , (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -61,7 +61,7 @@ describe('global/getSingleAddress()', () => {
       apiKey: 'test'
     };
 
-    postcodeApi.getSingleAddress({ apiKey : 'test' }, id, (error, body, rateLimit) => {
+    return postcodeApi.getSingleAddress({ apiKey : 'test' }, id, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);

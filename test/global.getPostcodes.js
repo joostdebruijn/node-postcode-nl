@@ -27,7 +27,7 @@ describe('global/getPostcodes()', () => {
     });
     const postcodeArea = 1234;
 
-    postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -41,7 +41,7 @@ describe('global/getPostcodes()', () => {
     });
     const postcodeArea = '1234AB';
 
-    postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -60,7 +60,7 @@ describe('global/getPostcodes()', () => {
       }
     };
 
-    postcodeApi.getPostcodes({}, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -80,7 +80,7 @@ describe('global/getPostcodes()', () => {
       apiKey : 'test'
     };
 
-    postcodeApi.getPostcodes({apiKey: 'test'}, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({apiKey: 'test'}, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
@@ -100,11 +100,32 @@ describe('global/getPostcodes()', () => {
       }
     };
 
-    postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
+    return postcodeApi.getPostcodes({}, postcodeArea, (error, body, rateLimit) => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
       expect(requestApiStub).to.be.calledWith(requestApiOptions);
+    });
+  });
+  it('should be able to send a followNext request', () => {
+    // Setting up the test data
+    const followNextStub = sandbox.stub(postcodeApi.helpers, 'followNext', (options, callback) => {
+      callback(null, null);
+    });
+    const postcodeArea = '1234';
+    const followNextOptions = {
+      url: 'https://postcode-api.apiwise.nl/v2/postcodes/?postcodeArea=' + postcodeArea,
+      headers : {
+        'X-Api-Key' : undefined
+      },
+      followNext: true
+    };
+
+    return postcodeApi.getPostcodes({ followNext: true }, postcodeArea, (error, body, rateLimit) => {
+      expect(error).to.eql(null);
+      expect(body).to.eql(null);
+      expect(rateLimit).to.eql(undefined);
+      expect(followNextStub).to.be.calledWith(followNextOptions);
     });
   });
 });
