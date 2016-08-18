@@ -7,14 +7,14 @@ Node module to obtain Dutch postcodes via [postcodeapi.nu](https://www.postcodea
 Simply grap the module from npm by doing `npm install --save postcode-nl`. After that you can include it in your application with `require('postcode-nl')`.
 
 ## Methods
-This module exposes various methods globally:
+This module exposes various methods globally, as a callback function or as a [promise](https://joostdebruijn.github.io/node-postcode-nl/docs/module-promises.html):
 
 - [getSingleAddress](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSingleAddress) - To search for an address based on the BAG identifier of the object.
 - [getSinglePostcode](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getSinglePostcode) - Returns the details of a single P6 postcode.
 - [getAddresses](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddresses) - Returns a list of addresses, it is possible to filter on postcode (P6-formatted) and number.
 - [getAddressesByPostcodeAndNumber](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getAddressesByPostcodeAndNumber) - Returns a list of addresses filtered on postcode (P6-formatted) and number. The difference with `getAddresses` is that filtering is *required*, otherwise an error is thrown.
 - [getPostcodes](https://joostdebruijn.github.io/node-postcode-nl/docs/global.html#getPostcodes) - Returns a list of postcodes (P6), optionally filtered on postcode area.
-- [helpers](https://joostdebruijn.github.io/node-postcode-nl/docs/module-helpers.html) - Some additional helper functions to validate postcodes
+- [helpers](https://joostdebruijn.github.io/node-postcode-nl/docs/module-helpers.html) - Some additional helper functions to validate postcodes and handling HAL-responses from the API.
 
 The [documentation](https://joostdebruijn.github.io/node-postcode-nl) contains a full explaination of all the parameters and provide some examples. The documentation could be accessed by web or could be build from source by using jsdoc.
 
