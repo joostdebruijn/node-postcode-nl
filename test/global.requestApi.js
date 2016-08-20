@@ -31,7 +31,8 @@ describe('global/requestApi()', () => {
     const requestOptions = {
       url : options.url,
       headers : options.headers,
-      json: true
+      json: true,
+      qs: {}
     };
     const requestStub = sandbox.stub(request, 'get', (options, callback) => {
       callback(null, { statusCode: 200 }, 'test');
