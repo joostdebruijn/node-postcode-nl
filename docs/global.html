@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.followNext">followNext</a></li><li data-type='method'><a href="module-helpers.html#.mergeResults">mergeResults</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li><li><a href="module-promises.html">promises</a><ul class='methods'><li data-type='method'><a href="module-promises.html#~getAddresses">getAddresses</a></li><li data-type='method'><a href="module-promises.html#~getAddressesByPostcodeAndNumber">getAddressesByPostcodeAndNumber</a></li><li data-type='method'><a href="module-promises.html#~getPostcodes">getPostcodes</a></li><li data-type='method'><a href="module-promises.html#~getSingleAddress">getSingleAddress</a></li><li data-type='method'><a href="module-promises.html#~getSinglePostcode">getSinglePostcode</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddresses</a></li><li><a href="global.html">getAddressesByPostcodeAndNumber</a></li><li><a href="global.html">getPostcodes</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-helpers.html">helpers</a><ul class='methods'><li data-type='method'><a href="module-helpers.html#.followNext">followNext</a></li><li data-type='method'><a href="module-helpers.html#.mergeResults">mergeResults</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP4">validatePostcodeP4</a></li><li data-type='method'><a href="module-helpers.html#.validatePostcodeP6">validatePostcodeP6</a></li></ul></li><li><a href="module-promises.html">promises</a><ul class='methods'><li data-type='method'><a href="module-promises.html#.getAddresses">getAddresses</a></li><li data-type='method'><a href="module-promises.html#.getAddressesByPostcodeAndNumber">getAddressesByPostcodeAndNumber</a></li><li data-type='method'><a href="module-promises.html#.getPostcodes">getPostcodes</a></li><li data-type='method'><a href="module-promises.html#.getSingleAddress">getSingleAddress</a></li><li data-type='method'><a href="module-promises.html#.getSinglePostcode">getSinglePostcode</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getAddresses</a></li><li><a href="global.html">getAddressesByPostcodeAndNumber</a></li><li><a href="global.html">getPostcodes</a></li><li><a href="global.html">getSingleAddress</a></li><li><a href="global.html">getSinglePostcode</a></li></ul>
 </nav>
 
 <div id="main">
@@ -430,6 +430,105 @@
             
 
             <td class="description last"><p>The streetnumber of the address that must be queried. It is ignored when no postcode is given.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>latitude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The latitude from which the distance to the addresses is calculated. It is ignored when no longitude is given.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>longitude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The longitude from which the distance to the addresses is calculated. It is ignored when no latitude is given.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>At this moment the only possible value is 'distance' and it is required when using the distance functionalities. The results will be sorted on distance, when <code>latitude</code> and <code>longitude</code> are given.</p></td>
         </tr>
 
     
@@ -1142,7 +1241,7 @@
 
     
 
-    <h4 class="name" id="getPostcodes"><span class="type-signature">(static) </span>getPostcodes<span class="signature">(options, postcodeArea<span class="signature-attributes">opt</span>, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getPostcodes"><span class="type-signature">(static) </span>getPostcodes<span class="signature">(options, query<span class="signature-attributes">opt</span>, callback)</span><span class="type-signature"></span></h4>
 
     
 
@@ -1343,6 +1442,60 @@
 
         <tr>
             
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Containing the query for calling the API. Must be an empty object if no filtering is needed.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
                 <td class="name"><code>postcodeArea</code></td>
             
 
@@ -1370,6 +1523,112 @@
             
 
             <td class="description last"><p>The postcode area to be queried, formatted as P4.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>latitude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The latitude from which the distance to the addresses is calculated. It is ignored when no longitude is given.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>longitude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The longitude from which the distance to the addresses is calculated. It is ignored when no latitude is given.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>At this moment the only possible value is 'distance' and it is required when using the distance functionalities. The results will be sorted on distance, when <code>latitude</code> and <code>longitude</code> are given.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1575,13 +1834,6 @@
 
     
 
-    
-    <dt class="tag-todo">To Do:</dt>
-    <dd class="tag-todo">
-        <ul>
-            <li>Support for pagination</li>
-        </ul>
-    </dd>
     
 </dl>
 
@@ -2423,7 +2675,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Aug 18 2016 08:56:08 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Aug 20 2016 21:01:33 GMT+0200 (West-Europa (zomertijd)) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
