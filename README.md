@@ -25,4 +25,9 @@ If you encounter any issue with this module, please fill in a bug report at this
 You are always welcome to contribute to this project by purposing a PR. Please document your code thoroughly: document new methods using the jsdoc notation and use inline comments to clarify what you are doing. Please check your code with eslinter and the ruleset defined in this repository before you submit it, to ensure you are using a consistent coding style.
 
 ## Compatibility
-The module is tested for Node 4.x and higher. You can see the latest test results at [Travis CI](https://travis-ci.org/joostdebruijn/node-postcode-nl).
+The module is tested against the LTS and current versions of Node.js, currently the 4.x, 6.x and 7.x branches. You can see the latest test results at [Travis CI](https://travis-ci.org/joostdebruijn/node-postcode-nl). It may work with other versions of Node.js, however it is not supported.
+
+## License
+Copyright (c) 2016 Joost de Bruijn and contributors
+
+The module is licensed under the [MIT License](https://spdx.org/licenses/MIT).

@@ -25,17 +25,17 @@
   },
   "homepage": "https://github.com/joostdebruijn/node-postcode-nl#readme",
   "dependencies": {
-    "request": "^2.74.0"
+    "request": "^2.76.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "coveralls": "^2.11.12",
-    "eslint": "^3.2.2",
-    "istanbul": "^0.4.4",
-    "jsdoc": "^3.4.0",
+    "coveralls": "^2.11.14",
+    "eslint": "^3.9.0",
+    "istanbul": "^0.4.5",
+    "jsdoc": "^3.4.2",
     "minami": "^1.1.1",
-    "mocha": "^3.0.2",
-    "sinon": "^1.17.5",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0"
   },
   "engines": {
