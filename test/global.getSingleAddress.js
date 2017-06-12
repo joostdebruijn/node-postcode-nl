@@ -22,7 +22,7 @@ afterEach(() => {
 describe('global/getSingleAddress()', () => {
   it('should check the BAG-id parameter is required', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
 
@@ -35,7 +35,7 @@ describe('global/getSingleAddress()', () => {
   });
   it('should check the BAG-id parameter to be a string', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const id = 1234;
@@ -49,7 +49,7 @@ describe('global/getSingleAddress()', () => {
   });
   it('should be able to call the API with the apiKey and BAG-id parameters', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const id = '1234';

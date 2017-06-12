@@ -22,7 +22,7 @@ afterEach(() => {
 describe('global/getSinglePostcode()', () => {
   it('should check the postcode parameter is required', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
 
@@ -35,7 +35,7 @@ describe('global/getSinglePostcode()', () => {
   });
   it('should check the postcode parameter to be a string', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = 1234;
@@ -49,7 +49,7 @@ describe('global/getSinglePostcode()', () => {
   });
   it('should check the postcode to be P6 formatted', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234';
@@ -63,7 +63,7 @@ describe('global/getSinglePostcode()', () => {
   });
   it('should be able to call the API with the apiKey and postcode parameters', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';

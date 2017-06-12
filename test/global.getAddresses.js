@@ -22,7 +22,7 @@ afterEach(() => {
 describe('global/getAddresses()', () => {
   it('should check the postcode parameter to be valid', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234 AB';
@@ -36,7 +36,7 @@ describe('global/getAddresses()', () => {
   });
   it('should check the number parameter to be valid', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';
@@ -51,7 +51,7 @@ describe('global/getAddresses()', () => {
   });
   it('should ignore the number parameter if there is no postcode', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const number = 12;
@@ -72,7 +72,7 @@ describe('global/getAddresses()', () => {
   });
   it('should be able to call the API without any parameter', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const requestApiOptions = {
@@ -92,7 +92,7 @@ describe('global/getAddresses()', () => {
   });
   it('should be able to call the API with the API-key', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const requestApiOptions = {
@@ -113,7 +113,7 @@ describe('global/getAddresses()', () => {
   });
   it('should be able to call the API with the postcode parameter', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';
@@ -136,7 +136,7 @@ describe('global/getAddresses()', () => {
   });
   it('should be able to call the API with the postcode and number parameter', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';
@@ -161,7 +161,7 @@ describe('global/getAddresses()', () => {
   });
   it('should be able to call the API with the distance functionalities', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const query = {
@@ -196,7 +196,7 @@ describe('global/getAddresses()', () => {
   });
   it('should check that both the longitude as latitude are given', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const query = {
@@ -215,7 +215,7 @@ describe('global/getAddresses()', () => {
   });
   it('should check that the sort parameter has a valid value', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const query = {
@@ -235,7 +235,7 @@ describe('global/getAddresses()', () => {
   });
   it('should be able to send a followNext request', () => {
     // Setting up the test data
-    const followNextStub = sandbox.stub(postcodeApi.helpers, 'followNext', (options, callback) => {
+    const followNextStub = sandbox.stub(postcodeApi.helpers, 'followNext').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';
