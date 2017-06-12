@@ -36,7 +36,7 @@ const rateLimitLast = {
 describe('helpers/followNext()', () => {
   it('should be able to follow next-href of the _links object in a response', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       switch (options.url) {
         // Respond with the correct json
         case 'https://www.test.nl/page1':
@@ -59,12 +59,12 @@ describe('helpers/followNext()', () => {
       expect(body).to.eql(expectedResult);
       expect(rateLimit).to.eql(undefined);
       expect(requestApiStub).to.be.calledWith(options);
-      expect(requestApiStub).to.be.called.thrice;
+      expect(requestApiStub).to.be.calledThrice;
     });
   });
   it('should be to return the correct rateLimits after performing several requests', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       switch (options.url) {
         // Respond with the correct json
         case 'https://www.test.nl/page1':
@@ -88,12 +88,12 @@ describe('helpers/followNext()', () => {
       expect(body).to.eql(expectedResult);
       expect(rateLimit).to.eql(rateLimitLast);
       expect(requestApiStub).to.be.calledWith(options);
-      expect(requestApiStub).to.be.called.thrice;
+      expect(requestApiStub).to.be.calledThrice;
     });
   });
   it('should be able to handle a single response without next-href', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       return callback(null, response3);
     });
 
@@ -101,12 +101,12 @@ describe('helpers/followNext()', () => {
       expect(error).to.eql(null);
       expect(body).to.eql(response3);
       expect(rateLimit).to.eql(undefined);
-      expect(requestApiStub).to.be.called.once;
+      expect(requestApiStub).to.be.calledOnce;
     });
   });
   it('should be able to handle a single response without next-href and return the right rateLimit', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       return callback(null, response3, rateLimitLast);
     });
 
@@ -120,12 +120,12 @@ describe('helpers/followNext()', () => {
       expect(body).to.eql(response3);
       expect(rateLimit).to.eql(rateLimitLast);
       expect(requestApiStub).to.be.calledWith(options);
-      expect(requestApiStub).to.be.called.once;
+      expect(requestApiStub).to.be.calledOnce;
     });
   });
   it('should be able to handle errors from requestApi.get()', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       return callback(new Error('Error'), null);
     });
 
@@ -133,12 +133,12 @@ describe('helpers/followNext()', () => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
-      expect(requestApiStub).to.be.called.once;
+      expect(requestApiStub).to.be.calledOnce;
     });
   });
   it('should be able to handle no results from the external API', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       return callback(null, null);
     });
 
@@ -146,41 +146,43 @@ describe('helpers/followNext()', () => {
       expect(error).to.eql(null);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
-      expect(requestApiStub).to.be.called.once;
+      expect(requestApiStub).to.be.calledOnce;
     });
   });
   it('should be able to handle errors from mergeResults() when performing there is a next-href', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       return callback(null, response1);
     });
-    const mergeResults = sandbox.stub(postcodeApi.helpers, 'mergeResults', (source, destination, callback) => {
-      return callback(new Error('Error'), null);
-    });
+    const mergeResults = sandbox.stub(postcodeApi.helpers, 'mergeResults')
+      .callsFake((source, destination, callback) => {
+        return callback(new Error('Error'), null);
+      });
 
     return postcodeApi.helpers.followNext({}, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
-      expect(requestApiStub).to.be.called.once;
-      expect(mergeResults).to.be.called.twice;
+      expect(requestApiStub).to.be.calledTwice;
+      expect(mergeResults).to.be.calledOnce;
     });
   });
   it('should be able to handle errors from mergeResults() when performing there is no next-href', () => {
     // Preparing requestApi
-    const requestApiStub = sandbox.stub(requestApi, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(requestApi, 'get').callsFake((options, callback) => {
       return callback(null, response3);
     });
-    const mergeResults = sandbox.stub(postcodeApi.helpers, 'mergeResults', (source, destination, callback) => {
-      return callback(new Error('Error'), null);
-    });
+    const mergeResults = sandbox.stub(postcodeApi.helpers, 'mergeResults')
+      .callsFake((source, destination, callback) => {
+        return callback(new Error('Error'), null);
+      });
 
     return postcodeApi.helpers.followNext({}, response2, (error, body, rateLimit) => {
       expect(error).to.be.instanceof(Error);
       expect(body).to.eql(null);
       expect(rateLimit).to.eql(undefined);
-      expect(requestApiStub).to.be.called.once;
-      expect(mergeResults).to.be.called.once;
+      expect(requestApiStub).to.be.calledOnce;
+      expect(mergeResults).to.be.calledOnce;
     });
   });
 });

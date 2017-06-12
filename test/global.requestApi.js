@@ -34,7 +34,7 @@ describe('global/requestApi()', () => {
       json: true,
       qs: {}
     };
-    const requestStub = sandbox.stub(request, 'get', (options, callback) => {
+    const requestStub = sandbox.stub(request, 'get').callsFake((options, callback) => {
       callback(null, { statusCode: 200 }, 'test');
     });
 
@@ -62,7 +62,7 @@ describe('global/requestApi()', () => {
       remaining: response.headers['x-ratelimit-remaining']
     };
 
-    sandbox.stub(request, 'get', (options, callback) => {
+    sandbox.stub(request, 'get').callsFake((options, callback) => {
       callback(null, response, null);
     });
 
@@ -76,7 +76,7 @@ describe('global/requestApi()', () => {
       statusCode : 404,
     };
 
-    sandbox.stub(request, 'get', (options, callback) => {
+    sandbox.stub(request, 'get').callsFake((options, callback) => {
       callback(null, response, null);
     });
 
@@ -92,7 +92,7 @@ describe('global/requestApi()', () => {
       statusCode : 403,
     };
 
-    sandbox.stub(request, 'get', (options, callback) => {
+    sandbox.stub(request, 'get').callsFake((options, callback) => {
       callback(null, response, null);
     });
 
@@ -103,7 +103,7 @@ describe('global/requestApi()', () => {
     });
   });
   it('should be able to handle errors from the request module and pass them through', () => {
-    sandbox.stub(request, 'get', (options, callback) => {
+    sandbox.stub(request, 'get').callsFake((options, callback) => {
       callback(new Error(''), null, null);
     });
 

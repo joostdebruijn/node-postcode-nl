@@ -22,7 +22,7 @@ afterEach(() => {
 describe('global/getAddressesByPostcodeAndNumber()', () => {
   it('should check the postcode parameter is required', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const number = 12;
@@ -36,7 +36,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
   });
   it('should check the postcode parameter to be valid', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234 AB';
@@ -50,7 +50,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
   });
   it('should check the number parameter is required', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';
@@ -64,7 +64,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
   });
   it('should check the number parameter to be valid', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';
@@ -79,7 +79,7 @@ describe('global/getAddressesByPostcodeAndNumber()', () => {
   });
   it('should be able to call the API with the apiKey, postcode and number parameters', () => {
     // Setting up the test data
-    const requestApiStub = sandbox.stub(api, 'get', (options, callback) => {
+    const requestApiStub = sandbox.stub(api, 'get').callsFake((options, callback) => {
       callback(null, null);
     });
     const postcode = '1234AB';
