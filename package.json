@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/joostdebruijn/node-postcode-nl#readme",
   "dependencies": {
-    "request": "^2.83.0"
+    "request": "^2.85.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
