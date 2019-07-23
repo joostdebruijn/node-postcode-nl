@@ -1,6 +1,5 @@
 # node-postcode-nl
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/joostdebruijn/node-postcode-nl.svg)](https://greenkeeper.io/)
 [![npm version](https://badge.fury.io/js/postcode-nl.svg)](https://badge.fury.io/js/postcode-nl) [![Build Status](https://travis-ci.org/joostdebruijn/node-postcode-nl.svg?branch=master)](https://travis-ci.org/joostdebruijn/node-postcode-nl) [![Coverage Status](https://coveralls.io/repos/github/joostdebruijn/node-postcode-nl/badge.svg?branch=master)](https://coveralls.io/github/joostdebruijn/node-postcode-nl?branch=master) [![dependencies Status](https://david-dm.org/joostdebruijn/node-postcode-nl/status.svg)](https://david-dm.org/joostdebruijn/node-postcode-nl) [![Known Vulnerabilities](https://snyk.io/test/github/joostdebruijn/node-postcode-nl/badge.svg)](https://snyk.io/test/github/joostdebruijn/node-postcode-nl)
 
 Node module to obtain Dutch postcodes via [postcodeapi.nu](https://www.postcodeapi.nu). The module is able to perform requests to the v2 API, does some basic validation before the call is performed, handles errors from the API and returns the results as a json for further processing within your own application. To use this module, requesting an API-key at postcodeapi.nu is required.
@@ -27,9 +26,9 @@ If you encounter any issue with this module, please fill in a bug report at this
 You are always welcome to contribute to this project by purposing a PR. Please document your code thoroughly: document new methods using the jsdoc notation and use inline comments to clarify what you are doing. Please check your code with eslinter and the ruleset defined in this repository before you submit it, to ensure you are using a consistent coding style.
 
 ## Compatibility
-The module is tested against the LTS and current versions of Node.js, currently the 4.x, 6.x and 7.x branches. You can see the latest test results at [Travis CI](https://travis-ci.org/joostdebruijn/node-postcode-nl). It may work with other versions of Node.js, however it is not supported.
+The module is tested against the LTS and current versions of Node.js, currently the 8.x, 10.x and 11.x branches. You can see the latest test results at [Travis CI](https://travis-ci.org/joostdebruijn/node-postcode-nl). It may work with other versions of Node.js, however it is not supported.
 
 ## License
-Copyright (c) 2016 Joost de Bruijn and contributors
+Copyright (c) 2019 Joost de Bruijn and contributors
 
 The module is licensed under the [MIT License](https://spdx.org/licenses/MIT).
