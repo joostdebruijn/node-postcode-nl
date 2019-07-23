@@ -1,6 +1,6 @@
 {
   "name": "postcode-nl",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Node module to obtain Dutch postcodes via postcodeapi.nu",
   "main": "index.js",
   "scripts": {
