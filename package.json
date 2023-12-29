@@ -4,7 +4,8 @@
   "description": "Node module to obtain Dutch postcodes via postcodeapi.nu",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
