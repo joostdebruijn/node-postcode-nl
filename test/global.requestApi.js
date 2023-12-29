@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict'
 const sinon = require('sinon')
 const chai = require('chai')
@@ -11,11 +12,10 @@ function fakeResponse (status = 200) {
     headers: {
       'Content-type': 'application/json'
     }
-  });
+  })
 
-  return Promise.resolve(mockResponse);
+  return Promise.resolve(mockResponse)
 }
-
 
 before(() => {
   chai.use(sinonChai)
@@ -76,6 +76,7 @@ describe('global/requestApi()', () => {
     requestStub.onCall(0).returns(fakeResponse())
 
     return requestApi.get(options, (error, body, rateLimit) => {
+      expect(error).to.eql(null)
       expect(rateLimit).to.eql(rateLimitReturn)
     })
   })

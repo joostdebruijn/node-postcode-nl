@@ -1,3 +1,4 @@
+/* eslint-disable no-undef, no-unused-expressions */
 'use strict'
 const postcodeApi = require('../index.js')
 const sinon = require('sinon')

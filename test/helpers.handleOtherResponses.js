@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict'
 const postcodeApi = require('../index.js')
 const chai = require('chai')
