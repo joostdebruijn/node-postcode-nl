@@ -1,7 +1,4 @@
 # node-postcode-nl
-
-[![npm version](https://badge.fury.io/js/postcode-nl.svg)](https://badge.fury.io/js/postcode-nl) [![Build Status](https://travis-ci.org/joostdebruijn/node-postcode-nl.svg?branch=master)](https://travis-ci.org/joostdebruijn/node-postcode-nl) [![Coverage Status](https://coveralls.io/repos/github/joostdebruijn/node-postcode-nl/badge.svg?branch=master)](https://coveralls.io/github/joostdebruijn/node-postcode-nl?branch=master) [![dependencies Status](https://david-dm.org/joostdebruijn/node-postcode-nl/status.svg)](https://david-dm.org/joostdebruijn/node-postcode-nl) [![Known Vulnerabilities](https://snyk.io/test/github/joostdebruijn/node-postcode-nl/badge.svg)](https://snyk.io/test/github/joostdebruijn/node-postcode-nl)
-
 Node module to obtain Dutch postcodes via [postcodeapi.nu](https://www.postcodeapi.nu). The module is able to perform requests to the v2 API, does some basic validation before the call is performed, handles errors from the API and returns the results as a json for further processing within your own application. To use this module, requesting an API-key at postcodeapi.nu is required.
 
 ## Using the module

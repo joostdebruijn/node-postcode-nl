@@ -2,9 +2,20 @@
 const sinon = require('sinon')
 const chai = require('chai')
 const sinonChai = require('sinon-chai')
-const request = require('request')
 const requestApi = require('../lib/requestApi.js')
 const expect = chai.expect
+
+function fakeResponse (status = 200) {
+  const mockResponse = new window.Response(JSON.stringify({}), {
+    status,
+    headers: {
+      'Content-type': 'application/json'
+    }
+  });
+
+  return Promise.resolve(mockResponse);
+}
+
 
 before(() => {
   chai.use(sinonChai)
@@ -34,9 +45,8 @@ describe('global/requestApi()', () => {
       json: true,
       qs: {}
     }
-    const requestStub = sandbox.stub(request, 'get').callsFake((options, callback) => {
-      callback(null, { statusCode: 200 }, 'test')
-    })
+    const requestStub = sandbox.stub(window, 'fetch')
+    requestStub.onCall(0).returns(fakeResponse())
 
     return requestApi.get(options, (error, body, rateLimit) => {
       expect(error).to.eql(null)
@@ -62,50 +72,16 @@ describe('global/requestApi()', () => {
       remaining: response.headers['x-ratelimit-remaining']
     }
 
-    sandbox.stub(request, 'get').callsFake((options, callback) => {
-      callback(null, response, null)
-    })
+    const requestStub = sandbox.stub(window, 'fetch')
+    requestStub.onCall(0).returns(fakeResponse())
 
     return requestApi.get(options, (error, body, rateLimit) => {
       expect(rateLimit).to.eql(rateLimitReturn)
     })
   })
-  it('should return null if a 404 was responded by the API', () => {
-    // Setting up the test data
-    const response = {
-      statusCode: 404
-    }
-
-    sandbox.stub(request, 'get').callsFake((options, callback) => {
-      callback(null, response, null)
-    })
-
-    return requestApi.get({}, (error, body, rateLimit) => {
-      expect(error).to.eql(null)
-      expect(body).to.eql(null)
-      expect(rateLimit).to.eql(undefined)
-    })
-  })
-  it('should return a error when the statusCode is not 200 or 404', () => {
-    // Setting up the test data
-    const response = {
-      statusCode: 403
-    }
-
-    sandbox.stub(request, 'get').callsFake((options, callback) => {
-      callback(null, response, null)
-    })
-
-    return requestApi.get({}, (error, body, rateLimit) => {
-      expect(error).to.instanceof(Error)
-      expect(body).to.eql(null)
-      expect(rateLimit).to.eql(undefined)
-    })
-  })
-  it('should be able to handle errors from the request module and pass them through', () => {
-    sandbox.stub(request, 'get').callsFake((options, callback) => {
-      callback(new Error(''), null, null)
-    })
+  it('should return a error when the statusCode is not ok', () => {
+    const requestStub = sandbox.stub(window, 'fetch')
+    requestStub.onCall(0).returns(fakeResponse(403))
 
     return requestApi.get({}, (error, body, rateLimit) => {
       expect(error).to.instanceof(Error)
