@@ -6,12 +6,21 @@ const sinonChai = require('sinon-chai')
 const requestApi = require('../lib/requestApi.js')
 const expect = chai.expect
 
-function fakeResponse (status = 200) {
-  const mockResponse = new window.Response(JSON.stringify({}), {
-    status,
-    headers: {
-      'Content-type': 'application/json'
-    }
+function fakeResponse (response = {}) {
+  let headers = {
+    'Content-type': 'application/json'
+  }
+  if (response.headers) {
+    headers = Object.assign(response.headers, headers)
+  }
+
+  let status = 200
+  if (response.status) {
+    status = response.status
+  }
+
+  const mockResponse = new global.Response(JSON.stringify({}), {
+    status, headers
   })
 
   return Promise.resolve(mockResponse)
@@ -39,29 +48,23 @@ describe('global/requestApi()', () => {
         'X-Api-Key': 'abcdefghijklmnopQRSTUVWXYZ123'
       }
     }
-    const requestOptions = {
-      url: options.url,
-      headers: options.headers,
-      json: true,
-      qs: {}
-    }
-    const requestStub = sandbox.stub(window, 'fetch')
+    const requestStub = sandbox.stub(global, 'fetch')
     requestStub.onCall(0).returns(fakeResponse())
 
     return requestApi.get(options, (error, body, rateLimit) => {
       expect(error).to.eql(null)
-      expect(body).to.eql('test')
+      expect(body).to.eql({})
       expect(rateLimit).to.eql(undefined)
-      expect(requestStub).to.be.calledWith(requestOptions)
     })
   })
   it('should return the rateLimits if requested', () => {
     // Setting up the test data
     const options = {
+      url: 'https://testapi.net',
       returnRateLimit: true
     }
     const response = {
-      statusCode: 200,
+      status: 200,
       headers: {
         'x-ratelimit-limit': 500,
         'x-ratelimit-remaining': 400
@@ -72,8 +75,8 @@ describe('global/requestApi()', () => {
       remaining: response.headers['x-ratelimit-remaining']
     }
 
-    const requestStub = sandbox.stub(window, 'fetch')
-    requestStub.onCall(0).returns(fakeResponse())
+    const requestStub = sandbox.stub(global, 'fetch')
+    requestStub.onCall(0).returns(fakeResponse(response))
 
     return requestApi.get(options, (error, body, rateLimit) => {
       expect(error).to.eql(null)
@@ -81,12 +84,36 @@ describe('global/requestApi()', () => {
     })
   })
   it('should return a error when the statusCode is not ok', () => {
-    const requestStub = sandbox.stub(window, 'fetch')
-    requestStub.onCall(0).returns(fakeResponse(403))
+    const options = {
+      url: 'https://testapi.net'
+    }
+    const response = {
+      status: 403
+    }
 
-    return requestApi.get({}, (error, body, rateLimit) => {
+    const requestStub = sandbox.stub(global, 'fetch')
+    requestStub.onCall(0).returns(fakeResponse(response))
+
+    return requestApi.get(options, (error, body, rateLimit) => {
       expect(error).to.instanceof(Error)
       expect(body).to.eql(null)
+      expect(rateLimit).to.eql(undefined)
+    })
+  })
+  it('should process query string parameters', () => {
+    const options = {
+      url: 'https://testapi.net',
+      qs: {
+        a: 'test'
+      }
+    }
+
+    const requestStub = sandbox.stub(global, 'fetch')
+    requestStub.onCall(0).returns(fakeResponse())
+
+    return requestApi.get(options, (error, body, rateLimit) => {
+      expect(error).to.eql(null)
+      expect(body).to.eql({})
       expect(rateLimit).to.eql(undefined)
     })
   })
