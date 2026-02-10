@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
-'use strict'
-const sinon = require('sinon')
-const chai = require('chai')
-const sinonChai = require('sinon-chai')
-const requestApi = require('../lib/requestApi.js')
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+import * as chai from 'chai'
+import requestApi from '../lib/requestApi.js'
 const expect = chai.expect
 
 function fakeResponse (response = {}) {
@@ -26,9 +25,7 @@ function fakeResponse (response = {}) {
   return Promise.resolve(mockResponse)
 }
 
-before(() => {
-  chai.use(sinonChai)
-})
+chai.use(sinonChai)
 
 let sandbox
 beforeEach(() => {

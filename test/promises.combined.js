@@ -1,16 +1,12 @@
 /* eslint-disable no-undef, no-unused-expressions */
-'use strict'
-const postcodeApi = require('../index.js')
-const interalApi = require('../lib/promisesRequires.js')
-
-const sinon = require('sinon')
-const chai = require('chai')
+import postcodeApi from '../index.js'
+import interalApi from '../lib/promisesRequires.js'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+import * as chai from 'chai'
 const expect = chai.expect
-const sinonChai = require('sinon-chai')
 
-before(() => {
-  chai.use(sinonChai)
-})
+chai.use(sinonChai)
 
 let sandbox
 beforeEach(() => {

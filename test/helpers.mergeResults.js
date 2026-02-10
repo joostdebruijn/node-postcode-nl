@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-'use strict'
-const postcodeApi = require('../index.js')
-const chai = require('chai')
-const expect = chai.expect
+import postcodeApi from '../index.js'
+import { expect } from 'chai'
+import { createRequire } from 'node:module'
+const require = createRequire(import.meta.url)
 
 // Loading assets
 const source = require('./assets/mergeResults/source.json')

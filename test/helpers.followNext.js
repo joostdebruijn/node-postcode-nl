@@ -1,15 +1,14 @@
 /* eslint-disable no-undef, no-unused-expressions */
-'use strict'
-const postcodeApi = require('../index.js')
-const sinon = require('sinon')
-const chai = require('chai')
-const expect = chai.expect
-const sinonChai = require('sinon-chai')
-const requestApi = require('../lib/requestApi.js')
+import postcodeApi from '../index.js'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+import * as chai from 'chai'
+import requestApi from '../lib/requestApi.js'
 
-before(() => {
-  chai.use(sinonChai)
-})
+import { createRequire } from 'node:module'
+const expect = chai.expect
+
+chai.use(sinonChai)
 
 let sandbox
 beforeEach(() => {
@@ -19,6 +18,7 @@ beforeEach(() => {
 afterEach(() => {
   sandbox.restore()
 })
+const require = createRequire(import.meta.url)
 
 // Loading assets
 const response1 = require('./assets/followNext/response1.json')

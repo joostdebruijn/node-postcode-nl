@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/joostdebruijn/node-postcode-nl#readme",
   "devDependencies": {
-    "chai": "^4.4.1",
+    "chai": "^6.2.2",
     "minami": "^1.2.3",
-    "mocha": "^10.2.0",
+    "mocha": "^11.7.5",
     "nyc": "^17.0.0",
-    "sinon": "^18.0.0",
-    "sinon-chai": "^3.3.0",
+    "sinon": "^21.0.1",
+    "sinon-chai": "^4.0.1",
     "standard": "^17.1.0"
   },
   "engines": {

@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
-'use strict'
-const postcodeApi = require('../index.js')
+import postcodeApi from '../index.js'
+import { expect } from 'chai'
 const checkP4 = postcodeApi.helpers.validatePostcodeP4
-const chai = require('chai')
-const expect = chai.expect
 
 describe('helpers/validatePostcodeP4()', () => {
   it('should return true for a correctly formatted P4 postcode, like 1234', () => {

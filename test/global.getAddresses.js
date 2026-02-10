@@ -1,15 +1,12 @@
 /* eslint-disable no-undef, no-unused-expressions */
-'use strict'
-const postcodeApi = require('../index.js')
-const sinon = require('sinon')
-const chai = require('chai')
-const sinonChai = require('sinon-chai')
-const api = require('../lib/requestApi.js')
+import postcodeApi from '../index.js'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+import * as chai from 'chai'
+import api from '../lib/requestApi.js'
 const expect = chai.expect
 
-before(() => {
-  chai.use(sinonChai)
-})
+chai.use(sinonChai)
 
 let sandbox
 beforeEach(() => {
